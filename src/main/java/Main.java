@@ -93,23 +93,22 @@ public class Main {
         // todo get command
         try {
 
-            String expectedTitle = "صفحه\u200Cی ورود به اینترنت";
+            String expectedTitle = "Instagram";
             String actualTitle = "";
 
             // launch Fire fox and direct it to the Base URL
             driver.get(loginUrl);
 //            driver.manage().window().fullscreen();
-            Thread.sleep(5000);
 
             // get the actual value of the title
             actualTitle = driver.getTitle();
+            driver.findElement(By.xpath(".//*[@id='react-root']/section/main/article/div[2]/div[2]/p/a")).click();
 
-            driver.findElement(By.xpath(".//*[@id='usename-field']")).sendKeys("sina_kashipazha");
-            String username = driver.findElement(By.xpath(".//*[@id='usename-field']")).getText();
-            driver.findElement(By.xpath(".//*[@id='login-form']/div[3]/input")).sendKeys("");
-            String password = driver.findElement(By.xpath(".//*[@id='login-form']/div[3]/input")).getText();
+            Thread.sleep(5000);
+            driver.findElement(By.xpath(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/div[1]/div/input")).sendKeys(TempUser.username);
+            driver.findElement(By.xpath(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/div[2]/div/input")).sendKeys(TempUser.password);
 
-            driver.findElement(By.id("login-btn")).click();
+            driver.findElement(By.id(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/span/button")).click();
             Thread.sleep(5000);
 
         /*
