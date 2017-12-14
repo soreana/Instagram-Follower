@@ -1,6 +1,6 @@
 package user;
 
 public class TempUser {
-    String username = "";
-    String password = "";
+    String username = "samjjv@gmail.com";
+    String password = "A@a12345";
 }
