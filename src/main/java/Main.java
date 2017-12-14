@@ -111,6 +111,8 @@ public class Main {
             driver.findElement(By.id(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/span/button")).click();
             Thread.sleep(5000);
 
+            log.info("I was here :)");
+
         /*
          * compare the actual title of the page with the expected one and print
          * the result as "Passed" or "Failed"
