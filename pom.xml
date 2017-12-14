@@ -48,10 +48,12 @@
     </build>
 
     <dependencies>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.10.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
@@ -61,12 +63,13 @@
             <version>3.7.1</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.github.detro.ghostdriver/phantomjsdriver -->
+        <!-- https://mvnrepository.com/artifact/com.codeborne/phantomjsdriver -->
         <dependency>
-            <groupId>com.github.detro.ghostdriver</groupId>
+            <groupId>com.codeborne</groupId>
             <artifactId>phantomjsdriver</artifactId>
-            <version>1.1.0</version>
+            <version>1.4.3</version>
         </dependency>
+
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
