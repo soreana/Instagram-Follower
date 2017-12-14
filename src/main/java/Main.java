@@ -104,12 +104,14 @@ public class Main {
             actualTitle = driver.getTitle();
             driver.findElement(By.xpath(".//*[@id='react-root']/section/main/article/div[2]/div[2]/p/a")).click();
 
-            Thread.sleep(5000);
             driver.findElement(By.xpath(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/div[1]/div/input")).sendKeys(TempUser.username);
+
             driver.findElement(By.xpath(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/div[2]/div/input")).sendKeys(TempUser.password);
 
-            driver.findElement(By.id(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/span/button")).click();
-            Thread.sleep(5000);
+            driver.findElement(By.xpath(".//*[@id='react-root']/section/main/article/div[2]/div[1]/div/form/span/button")).click();
+            Thread.sleep(9000);
+
+            log.info("I was here :)");
 
         /*
          * compare the actual title of the page with the expected one and print
