@@ -1,6 +1,14 @@
 package user;
 
 public class TempUser {
-    String username = "";
-    String password = "";
+
+    private static User user;
+
+    static {
+        user = new User("samjjv@gmail.com", "");
+    }
+
+    static User getUser() {
+        return user;
+    }
 }
