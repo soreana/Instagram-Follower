@@ -36,7 +36,11 @@ public class Main {
 
         instagramBot.follow(new FollowingUser("amirali313"));
 
-        Thread.sleep(10000);
+        Thread.sleep(5000);
+
+        instagramBot.unFollow(new FollowingUser("amirali313"));
+
+        Thread.sleep(5000);
 
         instagramBot.close();
     }

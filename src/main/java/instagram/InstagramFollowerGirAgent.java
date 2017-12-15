@@ -46,11 +46,11 @@ public class InstagramFollowerGirAgent {
                 driver = new PhantomJSDriver(caps); // load browser without ui
             }
 
-            driver.manage().window().setSize(new Dimension(400,300));
+            driver.manage().window().setSize(new Dimension(400, 300));
 
             wait = new WebDriverWait(driver, 30);
 
-            log.info("browser {} was chosen." , () -> prop.getProperty("instagram.browser") );
+            log.info("browser {} was chosen.", () -> prop.getProperty("instagram.browser"));
 
             prop.keySet()
                     .stream()
@@ -65,15 +65,11 @@ public class InstagramFollowerGirAgent {
     }
 
     public void login() {
-
         driver.get(properties.get("instagram.login.urlPath"));
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(properties.get("instagram.login.xpath.button"))));
 
         driver.findElement(By.xpath(properties.get("instagram.login.xpath.username"))).sendKeys(user.getUsername());
-
         driver.findElement(By.xpath(properties.get("instagram.login.xpath.password"))).sendKeys(user.getPassword());
-
         driver.findElement(By.xpath(properties.get("instagram.login.xpath.button"))).click();
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(properties.get("instagram.login.xpath.test"))));
@@ -102,10 +98,10 @@ public class InstagramFollowerGirAgent {
         }
     }
 
-    private boolean isFollowed(){
+    private boolean isFollowed() {
         try {
-            return ! driver.findElement(By.xpath(properties.get("instagram.following.user.xpath.followButton"))).getText().equals("Follow");
-        }catch (NoSuchElementException e){
+            return !driver.findElement(By.xpath(properties.get("instagram.following.user.xpath.followButton"))).getText().equals("Follow");
+        } catch (NoSuchElementException e) {
             e.printStackTrace();
             return true;
         }
@@ -113,11 +109,12 @@ public class InstagramFollowerGirAgent {
 
     private void followRecursive(FollowingUser target, MutableInt depth, MutableInt max) throws InterruptedException {
         driver.get(properties.get("instagram.base.urlPath") + target.getUsername());
-        Thread.sleep(3000);
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(properties.get("instagram.following.user.xpath.followButton"))));
         log.info("username: {} followed : {} ", target::getUsername, this::isFollowed);
-        if(! isFollowed()) {
-            // todo follow if not followed
+
+        if (!isFollowed()) {
+            clickOnFollowOrFollowingButton();
+            log.info("following {}.", target.getUsername());
         }
         // todo choose some of it's follower randomly
         // todo recursive call on that targeted users
@@ -127,6 +124,21 @@ public class InstagramFollowerGirAgent {
         int depth = Integer.parseInt(properties.get("instagram.following.max.depth"));
         int number = Integer.parseInt(properties.get("instagram.following.max.number"));
         followRecursive(target, MutableInt.valueOf(depth), MutableInt.valueOf(number));
+    }
+
+    private void clickOnFollowOrFollowingButton(){
+        driver.findElement(By.xpath(properties.get("instagram.following.user.xpath.followButton"))).click();
+        wait.until(ExpectedConditions.textToBe(By.xpath(properties.get("instagram.following.user.xpath.followButton")), "Following"));
+    }
+
+    public void unFollow(FollowingUser target) {
+        driver.get(properties.get("instagram.base.urlPath") + target.getUsername());
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(properties.get("instagram.following.user.xpath.followButton"))));
+
+        if (isFollowed()) {
+            clickOnFollowOrFollowingButton();
+            log.info("unFollowing {}.", target.getUsername());
+        }
     }
 
     public void close() {
