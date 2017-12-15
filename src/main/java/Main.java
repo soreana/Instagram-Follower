@@ -1,7 +1,9 @@
-import instagram.InstagramBot;
+import instagram.InstagramFollowerGirAgent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import selenium.SeleniumUtils;
+import user.User;
+import user.UserManager;
 
 
 public class Main {
@@ -26,8 +28,9 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
         initialCheck(args.length);
+        User user = UserManager.getInstance().getUser("samjjv@gmail.com");
 
-        InstagramBot instagramBot = new InstagramBot(args[0]);
+        InstagramFollowerGirAgent instagramBot = new InstagramFollowerGirAgent(args[0],user);
 
         instagramBot.login();
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import user.User;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -14,14 +15,16 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class InstagramBot {
-    private final static Logger log = LogManager.getLogger(InstagramBot.class);
+public class InstagramFollowerGirAgent {
+    private final static Logger log = LogManager.getLogger(InstagramFollowerGirAgent.class);
 
     private static WebDriver driver;
+    private final User user ;
+
     private Map<String, String> properties = new HashMap<>();
 
-    // todo get user as an argument
-    public InstagramBot(String propertyFilePath) {
+    public InstagramFollowerGirAgent(String propertyFilePath, User user) {
+        this.user = user;
 
         try (InputStream input = new FileInputStream(propertyFilePath)) {
             Properties prop = new Properties();
@@ -52,9 +55,9 @@ public class InstagramBot {
 
         driver.findElement(By.xpath(properties.get("instagram.login.xpath.login"))).click();
 
-        driver.findElement(By.xpath(properties.get("instagram.login.xpath.username"))).sendKeys("");
+        driver.findElement(By.xpath(properties.get("instagram.login.xpath.username"))).sendKeys(user.getUsername());
 
-        driver.findElement(By.xpath(properties.get("instagram.login.xpath.password"))).sendKeys("");
+        driver.findElement(By.xpath(properties.get("instagram.login.xpath.password"))).sendKeys(user.getPassword());
 
         driver.findElement(By.xpath(properties.get("instagram.login.xpath.button"))).click();
     }
