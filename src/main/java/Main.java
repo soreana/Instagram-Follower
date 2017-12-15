@@ -2,9 +2,9 @@ import instagram.InstagramFollowerGirAgent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import selenium.SeleniumUtils;
+import user.FollowingUser;
 import user.User;
 import user.UserManager;
-
 
 public class Main {
     private final static Logger log = LogManager.getLogger(Main.class);
@@ -34,7 +34,9 @@ public class Main {
 
         instagramBot.login();
 
-        Thread.sleep(2000);
+        instagramBot.follow(new FollowingUser("amirali313"));
+
+        Thread.sleep(10000);
 
         instagramBot.close();
     }
