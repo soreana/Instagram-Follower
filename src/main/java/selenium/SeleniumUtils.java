@@ -32,7 +32,6 @@ public interface SeleniumUtils {
             return (boolean) JBody.getJSONObject("value").get("ready");
 
         } catch (IOException e) {
-            e.printStackTrace();
             return false;
         }
     }
