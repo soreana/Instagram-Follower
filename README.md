@@ -1,6 +1,5 @@
 # Instagram Follower
-This project aimed to provide api for Instagram functionality like follow and unfollow
- users using Selenium. Until now it can login and follow, unfollow users in Instagram.
+This project aimed to provide api for Instagram functionality like follow and unfollow. It has login, follow and unfollow functionality.
  
  To run this project you should:
  * Download Selenium: curl -O http://selenium-release.storage.googleapis.com/3.7/selenium-server-standalone-3.7.1.jar
